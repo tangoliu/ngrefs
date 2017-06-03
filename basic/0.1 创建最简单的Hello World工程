@@ -1,0 +1,63 @@
+第一步：创建package.json配置文件
+创建一个新的文件夹，作为项目的根目录，然后在根目录下面创建一个叫package.json的文件，该文件描述了npm包的所有相关信息。
+文件内容为：
+{
+  "name": "HelloWorld",  //项目名称
+  "version": "1.0.0",     //项目的版本
+  "description": "Hello-world project for Angular 2",  //项目的简单描述
+  "scripts": {          //可以使npm调用一些脚本，或封装一些命令
+    "server": "webpack-dev-server --inline --colors --progress --port 3000",
+    "start": "npm run server"
+  },
+  "license": "MIT",
+  "devDependencies": {    //项目开发时所依赖的一些工具包
+    "@types/core-js": "~0.9.34",
+    "ts-loader": "~1.2.0",
+    "typescript": "~2.0.0",
+    "webpack": "~1.12.9",
+    "webpack-dev-server": "~1.14.0"
+  },
+  "dependencies": {     //项目依赖的基础包
+    "@angular/common": "2.0.0",
+    "@angular/compiler": "2.0.0",
+    "@angular/core": "2.0.0",
+    "@angular/platform-browser": "2.0.0",
+    "@angular/platform-browser-dynamic": "2.0.0",
+    "core-js": "~2.4.1",
+    "reflect-metadata": "~0.1.8",
+    "rxjs": "5.0.0-beta.12",
+    "webpack-dev-server": "^1.16.3",
+    "zone.js": "~0.6.26"
+  }
+}
+
+
+第二步：创建tsconfig.json文件
+在根目录下面创建该文件，它配置了typescript编译器的编译参数。
+文件内容；
+{
+  "compilerOptions": {
+    "target": "es5",   //编译目标平台（ES3、ES5、ES6等）
+    "module": "commonjs",  //组织代码的方式
+    "moduleResolution": "node",
+    "sourceMap": true,    //把ts文件编译成js文件时，是否生成对应的sourcemap文件
+    "emitDecoratorMetadata": true,    //让typescript支持为带有装饰器的声明生成元数据
+    "experimentalDecorators": true,    //是否启用实验性装饰器特性
+    "removeComments": false,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "typeRoots": [            //指定第三方库的类型定义文件的存放位置，推荐使用node_modules/@types文件夹
+      "./node_modules/@types/"
+    ]
+  },
+  "compileOnSave": true,
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+第三步：创建资源文件夹
+到这一步，angular项目的基本配置文件创建完成，
+接下来在项目根目录下创建一个src文件夹，这个文件夹将存放项目的业务代码文件。
+
+第四步：创建组件相关文件
