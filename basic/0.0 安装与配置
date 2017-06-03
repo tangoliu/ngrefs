@@ -1,0 +1,7 @@
+1.安装angular所依赖的基础环境nodejs.
+官网下载安装包：https://nodejs.org/en/
+安装完成后，可以在终端上输入命令：
+node -v  //查看nodejs的版本
+然后，输入以下命令：
+npm -v   //查看npm的版本，npm(node package management)。高版本的nodejs已经集成了npm工具，不用另外安装。
+至此，nodejs的环境就搭建好了。
