@@ -4,4 +4,4 @@
 node -v  //查看nodejs的版本
 然后，输入以下命令：
 npm -v   //查看npm的版本，npm(node package management)。高版本的nodejs已经集成了npm工具，不用另外安装。
-至此，nodejs的环境就搭建好了。
+至此，nodejs的环境就搭建好了，及angular的开发环境就搭建好了。
