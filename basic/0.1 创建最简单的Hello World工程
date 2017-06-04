@@ -198,6 +198,6 @@ npm会根据package.json配置文件安装所有的依赖包。在安装的过�
     通过AppModule的bootstrap，找到启动的根组件AppComponent；
     通过根组件AppComponent找到根组件的模板templateUrl和选择器selector，从而在index.html中根据selector找到加载的父元素来加载templateUrl指定的模板。
     
-    
+该工程的最终源码可以在这里找到：https://github.com/tangoliu/hello-world    
     
 
