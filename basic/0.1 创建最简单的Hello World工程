@@ -14,8 +14,8 @@
     "@types/core-js": "~0.9.34",
     "ts-loader": "~1.2.0",
     "typescript": "~2.0.0",
-    "webpack": "~1.12.9",
-    "webpack-dev-server": "~1.14.0"
+    "webpack": "~1.12.9", //webpack是打包工具
+    "webpack-dev-server": "~1.14.0"  //webpack-dev-server是一个小型的服务器，开放时项目可以在这个服务器上运行。
   },
   "dependencies": {     //项目依赖的基础包
     "@angular/common": "2.0.0",
@@ -81,11 +81,123 @@ export class AppComponent {  //定义一个组件类并对外输出该类，这�
 
 
 第五步：创建app.module.ts文件
-在Angular应用中
+在Angular应用中需要用模块来组织一些功能紧密相关的代码块，每个应用至少有一个模块，习惯上把它称为AppModule。
 在src目录下创建一个app.module.ts文件来定义AppModule，代码如下：
+// app.module.ts
+import {NgModule} from '@angular/core';
+import {BrowserModule} from "@angular/platform-browser";
+import {AppComponent} from "./app.component";
+
+@NgModule({    //@NgModule是用于定义模块的装饰器
+  declarations: [AppComponent],  //导入模块依赖的组件、指令等
+  imports: [BrowserModule],  //用来导入当前模块所需的其他模块。几乎每个应用的根模块都要导入BrowserModule模块，因为它注册了一些关键的Provider和通用的指令，所以在公共模块中导入，作为全局调用。
+  bootstrap: [AppComponent]  //标记出引导组件，在Angular启动应用时，将被标记的组件渲染到模板中。
+})
+export class AppModule {
+}
+
+
+第六步：添加main.ts文件
+Angular项目一般有一个入口文件，通过这个文件来串联起整个项目。
+在src目录下，创建一个这样的入口文件main.ts，示例如下：
+//main.ts
+import 'core-js'; // include reflect & polyfill
+// import 'reflect-metadata';
+import 'zone.js';
+
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {AppModule} from './app.module';
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+
+//要启动应用，主要依赖于Angular自带的platformBrowserDynamic函数和应用模块AppModule，
+//然后调用platformBrowserDynamic().bootstrapModule（）方法，来编译启动AppModule模块。
+
+
+第七步：创建index.html宿主页面
+在项目的根目录下面创建index.html宿主页面，代码如下：
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=UTF-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular 2 Hello World</title>
+    <base href="/">
+  </head>
+  <body>
+    <hello-world>  <!--该标签是在根组件app.component.ts中定义的selector-->
+      加载中...
+    </hello-world>
+    <script src="bundle.js"></script> <!--bundle.js是webpack打包命令运行后生成的文件-->
+  </body>
+</html>
+
+
+第八步：创建打包工具的配置文件
+以上七步基本整个Hello World项目就搭建完成了，但是怎么将这个项目运行起来呢？
+首先需要有打包工具，将项目打包编译。我们采用Webpack来完成打包编译的工作，当然，也可以采用其他的打包工具，例如Gulp/Grunt/FIS3等。
+在package.json文件中有这样一段配置：
+"devDependencies": {
+    ...
+    "webpack": "~1.12.9",
+    "webpack-dev-server": "~1.14.0"
+  }
+其中，webpack是打包工具，而webpack-dev-server是一个小型的服务器，开放时项目可以在这个服务器上运行。
+webpack也有自己的配置文件，在根目录下创建一个webpack.config.js文件，配置如下：
+//webpack.config.js
+var webpack = require('webpack');
+var path = require('path');
+module.exports = {
+  entry: './src/main.ts',  //指定页面的入口文件，可以是一个或者多个入口文件
+  output: {    //对应输出项配置，即输出入口文件编译后的生成的文件
+    filename: './bundle.js'  //指定打包后的输出文件名，这个文件需要被引入到index.html中
+  },
+  resolve: {   //定义解析模块路径时的配置。常用的是extensions，可以用来指定模块的后缀，这样在引入模块时就不需要写后缀了，它会自动补全。
+    root: [ path.join(__dirname, 'src') ],
+    extensions: ['', '.ts', '.js']
+  },
+  module: {
+    loaders: [   //module.loaders，它是最关键的配置项，它告知webpack每一类文件都需要使用什么加载器来处理。
+      { test: /\.ts$/, loader: 'ts-loader' }
+    ]
+  }
+};
+
+
+第九步：运行
+1.首先，在项目的根目录下运行命令：npm install。
+npm会根据package.json配置文件安装所有的依赖包。在安装的过程中，会自动在根目录上创建一个node_modules文件夹，项目依赖的包都安装在其中。
+
+2.其次，运行命令：npm start
+运行该命令用于启动服务
+
+3.在浏览器中输入：localhost:3000（默认端口号为3000，package.json中可以配置），然后就可以在浏览器中看到Hello World的字样了。
+
+4.输入命令：ctrl + c，停止服务，然后刷新浏览器，Hello World字样就消失了。
 
 
 
+总结
+项目搭建完成后，项目的目录结构：
+|--package.json
+|--tsconfig.json
+|--webpack.config.js
+|--index.html
+|--src
+    |--app.component.html
+    |--app.component.ts
+    |--app.module.ts
+    |--main.ts
 
-
+命令npm install会根据package.json文件，将项目所有的依赖包都下载下来，存在根目录的node_modules文件夹中。
+命令npm start会根据package.json文件的scripts字段的配置来启动服务。启动服务后，先进行编译，然后打包，然后运行。
+因为使用的是webpack来打包的，所以首先会读取webpack.config.js文件，webpack处理过程：
+    根据webpack.config.js文件的resolve和module.loaders的配置，打包输出'./bundle.js'文件，并将其引入index.html中，让打包结果加载到页面中。
+    因为加载了bundle.js文件，所以可以通过webpack.config.js文件找到项目的入口文件'./src/main.ts'，通过main.ts找到AppModule；
+    通过AppModule的bootstrap，找到启动的根组件AppComponent；
+    通过根组件AppComponent找到根组件的模板templateUrl和选择器selector，从而在index.html中根据selector找到加载的父元素来加载templateUrl指定的模板。
+    
+    
+    
 
