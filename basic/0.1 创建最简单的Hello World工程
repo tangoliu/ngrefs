@@ -56,8 +56,36 @@
   ]
 }
 
+
 第三步：创建资源文件夹
 到这一步，angular项目的基本配置文件创建完成，
 接下来在项目根目录下创建一个src文件夹，这个文件夹将存放项目的业务代码文件。
 
+
 第四步：创建组件相关文件
+在src目录下创建app.component.ts文件以及模板文件app.component.html，示例如下：
+//app.component.ts
+import {Component} from '@angular/core';  //从angular的基础包@angular/core中引入组件模板Component
+
+@Component({   //通过@Component装饰器告诉angular怎么创建这个组件
+  selector: 'hello-world',  //定义该组件的DOM元素名称
+  templateUrl: 'src/app.component.html'   //引入该组件所需的模板
+})
+export class AppComponent {  //定义一个组件类并对外输出该类，这样在其他的文件中就可以通过这个类名引用该组件
+}
+
+//app.component.html
+<h3>
+  Hello World!
+</h3>
+
+
+第五步：创建app.module.ts文件
+在Angular应用中
+在src目录下创建一个app.module.ts文件来定义AppModule，代码如下：
+
+
+
+
+
+
