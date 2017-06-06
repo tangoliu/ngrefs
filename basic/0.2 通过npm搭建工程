@@ -1,0 +1,9 @@
+1.新建一个文件夹，比如取名hello-angular
+切换到hello-angular文件夹下面，运行命令：npm init 回车
+然后根据提示输入项目名称、版本等信息。
+执行完成后会在hello-angular文件夹下面自动生成一个package.json文件
+
+2.修改package.json文件
+添加dependencies、devDependencies等属性（用于npm install命令下载依赖，依赖会存放在hello-angular/node_modules下面）
+
+3.其他步骤与0.1节中的相关步骤一致
