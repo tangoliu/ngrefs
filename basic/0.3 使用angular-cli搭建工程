@@ -1,3 +1,10 @@
+angluar cli 是一个比较好的工具 。解决 Angular 环境设置是一大入门门槛，有22%的人说环境设置太过复杂。Angular CLI的诞生，正是为了解决这个问题。
+方便大家进行使用，给大家罗列了一些传送地址 。 有可能要“搭梯子” 。 github 看到的第一个版本是 2016年4月7号发布的 。
+参考官网地址：
+https://cli.angular.io/
+参考github地址：
+https://github.com/angular/angular-cli
+==============================================================================================================================
 1.安装angular-cli工具
 用npm安装typescript和typings，因为angular-cli是用typescript写的，所以要先装这两个：npm install -g typescript typings
 然后，安装angular-cli:npm install -g @angular/cli（以前的命令为：npm install -g angular-cli，因为由angular-cli更名为了@angular/cli）
@@ -13,45 +20,43 @@ npm cache clean
 2.使用angular-cli创建Angular工程
 执行命令：ng new project_name，project_name是你的项目名
 工程结构：
-|--e2e
+|--e2e             //用于测试
     |--app.e2e-spec.ts
     |--app.po.ts
     |--tsconfig.json
-|--node_modules
-|--src
-    |--app                 
-        |--app.component.css
-        |--app.component.html
-        |--app.component.spec.ts
-        |--app.component.ts    //生成了一个angular组件app.components相关的css，html，ts
-        |--app.module.ts
+|--node_modules    //存放依赖包的地方
+|--src             //存放源代码
+    |--app         //根模块        
+        |--app.component.css      //样式文件
+        |--app.component.html     //模板
+        |--app.component.spec.ts  //测试
+        |--app.component.ts       //组件,生成了一个angular组件app.components.ts及其相关的css，html，ts
+        |--app.module.ts          //模块
     |--assets
         |--.gitkeep
-    |--environments
-        |--environment.prod.ts
-        |--environment.ts
+    |--environments               //环境
+        |--environment.prod.ts    //生产环境
+        |--environment.ts         //非生产环境
     |--favicon.ico
-    |--index.html
-    |--main.ts      //angular工程的main.ts引导启动文件
+    |--index.html         //宿主页面
+    |--main.ts            //angular工程的main.ts引导启动文件，即程序引导入口
     |--polyfills.ts   //导入es6模块的配置文件polyfills.ts
     |--styles.css    //全局样式style.css
     |--test.ts
-    |--tsconfig.json
+    |--tsconfig.json      //TypeScript编译配置文件
 |--.editorconfig
 |--.gitignore
-|--angular-cli.json  //angular-cli.json是angular-cli的配置文件
-|--karma.conf.js     //测试配置文件karma.conf.js
-|--package.json
+|--angular-cli.json    //angular-cli.json是angular-cli的配置文件
+|--karma.conf.js       //测试配置文件karma.conf.js
+|--package.json        //依赖包以及npm的命令配置文件
 |--protractor.conf.js  //端到端的测试配置文件protractor.conf.js
 |--README.md
-|--tslint.json    //typescript的lint配置文件
-
-typescript配置文件ts.config.json；
-typescript的声明文件typings.d.ts；
+|--tslint.json         //typescript的lint配置文件
 
 3.启动工程
 cd project_name //切换到工程根目录
 ng serve  //执行ng serve命令，注：ng 命令使用的是webpack打包工具
+（ng serve --prod -aot  //运行命令，比不加参数时的ng serve占用的空间小些）
 
 4.浏览器输入：http://localhost:4200 就可以看到app works！
 至此angular-cli创建工程完成。
@@ -91,6 +96,17 @@ ng github-pages:deploy --message "Optional commit message"
 //其他.更多 命令 可以用以下命令查看 。
 ng help
 ===============================================================================================================================
+例，创建一个名为home的component：ng g component home
+可以看到工程的src/app下面多了一个home目录，home目录下面共有4个文件，
+分别是home.component.css、home.component.html、home.component.spec.ts(测试代码)、home.component.ts；
+如果没有组件化经验的同学可能会问，为啥有css，html，ts，*.spec.ts都放在这下面啊？
+因为组件化可以重复使用，提高效率，庞大的工程代码中可以提高可维护性，阅读性，方便测试等等。
+
+例，创建一个名为about的module：ng g module about
+可以看到工程的src/app下面多了一个about目录，about目录下面共有5个文件，
+分别是about.component.css、about.component.html、about.component.spec.ts(测试代码)、about.component.ts、about.module.ts。
+可以看出模块比component多了一个module.ts文件。
+===============================================================================================================================
 问题
 Error: Attempting to watch missing directory: typings
 解决
@@ -107,16 +123,4 @@ Could not require ‘angular-cli-build.js': Cannot find module ‘angular-cli/li
 解决
 npm link angular-cli
 ==============================================================================================================================
-angluar2 cli 是一个比较好的工具 。解决 Angular 2 环境设置是一大入门门槛，有22%的人说环境设置太过复杂。Angular CLI的诞生，正是为了解决这个问题。
 
-1. 基本介绍
-
-方便大家进行使用，给大家罗列了一些传送地址 。 有可能要“搭梯子” 。 github 看到的第一个版本是 2016年4月7号发布的 。
-
-老套路官网
-
-https://cli.angular.io/
-
-github
-
-https://github.com/angular/angular-cli
