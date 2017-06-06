@@ -103,9 +103,8 @@ ng help
 因为组件化可以重复使用，提高效率，庞大的工程代码中可以提高可维护性，阅读性，方便测试等等。
 
 例，创建一个名为about的module：ng g module about
-可以看到工程的src/app下面多了一个about目录，about目录下面共有5个文件，
-分别是about.component.css、about.component.html、about.component.spec.ts(测试代码)、about.component.ts、about.module.ts。
-可以看出模块比component多了一个module.ts文件。
+可以看到工程的src/app下面多了一个about目录，about目录下面共有1个文件，
+是about.module.ts。
 ===============================================================================================================================
 问题
 Error: Attempting to watch missing directory: typings
