@@ -1,0 +1,122 @@
+1.安装angular-cli工具
+用npm安装typescript和typings，因为angular-cli是用typescript写的，所以要先装这两个：npm install -g typescript typings
+然后，安装angular-cli:npm install -g @angular/cli（以前的命令为：npm install -g angular-cli，因为由angular-cli更名为了@angular/cli）
+
+如果你之前安装失败过，最好在安装angular-cli之前先卸载干净，用以下两句：
+npm uninstall -g angular-cli
+npm cache clean 
+执行完以上两句后，检查全局的npm文件下是否还残留有这两个文件：ng文件和ng.cmd文件，
+如果有的话也要删掉，删掉后再用"npm install -g angular-cli"安装最新的angular-cli即可。
+
+安装完毕后，试下ng -v 和ng --help，有显示正确内容就成功了。
+
+2.使用angular-cli创建Angular工程
+执行命令：ng new project_name，project_name是你的项目名
+工程结构：
+|--e2e
+    |--app.e2e-spec.ts
+    |--app.po.ts
+    |--tsconfig.json
+|--node_modules
+|--src
+    |--app                 
+        |--app.component.css
+        |--app.component.html
+        |--app.component.spec.ts
+        |--app.component.ts    //生成了一个angular组件app.components相关的css，html，ts
+        |--app.module.ts
+    |--assets
+        |--.gitkeep
+    |--environments
+        |--environment.prod.ts
+        |--environment.ts
+    |--favicon.ico
+    |--index.html
+    |--main.ts      //angular工程的main.ts引导启动文件
+    |--polyfills.ts   //导入es6模块的配置文件polyfills.ts
+    |--styles.css    //全局样式style.css
+    |--test.ts
+    |--tsconfig.json
+|--.editorconfig
+|--.gitignore
+|--angular-cli.json  //angular-cli.json是angular-cli的配置文件
+|--karma.conf.js     //测试配置文件karma.conf.js
+|--package.json
+|--protractor.conf.js  //端到端的测试配置文件protractor.conf.js
+|--README.md
+|--tslint.json    //typescript的lint配置文件
+
+typescript配置文件ts.config.json；
+typescript的声明文件typings.d.ts；
+
+3.启动工程
+cd project_name //切换到工程根目录
+ng serve  //执行ng serve命令，注：ng 命令使用的是webpack打包工具
+
+4.浏览器输入：http://localhost:4200 就可以看到app works！
+至此angular-cli创建工程完成。
+注意：angular-cli虽然简单方便，帮你搭建好所需环境，但简单方便的对立面是不灵活，多了很多我们可能不想用的包、文件，
+      所以有能力搭建项目的，还是自己搭建吧！
+
+5.结束工程的运行，执行命令：ctrl + c
+
+===============================================================================================================================
+angular-cli命令：
+ng g component my-new-component（简写形式）       //使用ng命令创建一个组件
+ng generate component my-new-component（全写形式）
+ng g component ../my-new-component     //使用ng命令创建一个组件时指定路径
+
+ng g directive my-new-directive
+ng g pipe my-new-pipe
+ng g service my-new-service
+
+ng g class my-new-class
+ng g interface my-new-interface
+ng g enum my-new-enum
+ng g module my-new-module
+
+//运行
+ng serve   //运行命令
+ng serve --port 4201 --live-reload-port 49153   //指定端口号并运行
+ng serve -prod  //配置运行，相关联文件src/client/app/environment.ts , config/environment.dev.ts ,config/environment.prod.ts
+ng build -prod  //构建
+
+//测试。让项目更良好的运行，cli 实现了 Karma 和 e2e 两种测试。命令如下
+ng test //  karma
+ng e2e //  e2e
+
+//发布.目前发布支持，Github Pages或者Firebase 。 命今如下
+ng github-pages:deploy --message "Optional commit message"
+
+//其他.更多 命令 可以用以下命令查看 。
+ng help
+===============================================================================================================================
+问题
+Error: Attempting to watch missing directory: typings
+解决
+npm install -g typings
+typings install
+
+问题
+message Unable to connect to “https://api.typings.org/entries/dt/angular-protractor/tags/1.5.0%2B20160425143459″
+解决
+需要  “搭梯子”
+
+问题
+Could not require ‘angular-cli-build.js': Cannot find module ‘angular-cli/lib/broccoli/angular2-app’
+解决
+npm link angular-cli
+==============================================================================================================================
+angluar2 cli 是一个比较好的工具 。解决 Angular 2 环境设置是一大入门门槛，有22%的人说环境设置太过复杂。Angular CLI的诞生，正是为了解决这个问题。
+
+1. 基本介绍
+
+方便大家进行使用，给大家罗列了一些传送地址 。 有可能要“搭梯子” 。 github 看到的第一个版本是 2016年4月7号发布的 。
+
+老套路官网
+
+https://cli.angular.io/
+
+github
+
+https://github.com/angular/angular-cli
